@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="circleImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/light_blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_image</item>
+        <item name="postSplashScreenTheme">@style/Theme.TaskN22</item>
+    </style>
+
+    <style name="CustomBottomNavigationStyle" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="itemActiveIndicatorStyle">@style/CustomBottomNavigationActiveIndicator</item>
+    </style>
+
+    <style name="CustomBottomNavigationActiveIndicator" parent="">
+        <item name="android:width">0dp</item>
+        <item name="android:height">0dp</item>
+        <item name="marginHorizontal">4dp</item>
+        <item name="android:shape">oval</item>
+        <item name="shapeAppearanceOverlay">@style/circleImageViewRounded</item>
+        <item name="android:color">@color/green</item>
+    </style>
+</resources>

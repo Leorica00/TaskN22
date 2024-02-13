@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TaskN22</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="error_client">Client Error</string>
+    <string name="error_server">Server Error</string>
+    <string name="error_http">Http Error</string>
+    <string name="error_timeout">Timeout Error</string>
+    <string name="unexpected_error">Unexpected Error</string>
+    <string name="try_again">Try Again</string>
+    <string name="share">Share</string>
+    <string name="write_comment">Write Comment…</string>
+    <string name="notifications">notifications</string>
+    <string name="messages">Messages</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+</resources>
