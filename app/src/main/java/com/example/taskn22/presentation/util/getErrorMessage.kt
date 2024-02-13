@@ -1,4 +1,4 @@
-package com.example.taskn22.presentation.extension
+package com.example.taskn22.presentation.util
 
 import com.example.taskn21.data.remote.common.HandleErrorStates
 import com.example.taskn22.R

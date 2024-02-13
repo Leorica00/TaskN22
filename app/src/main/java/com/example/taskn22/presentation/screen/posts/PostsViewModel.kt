@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.taskn21.data.remote.common.Resource
 import com.example.taskn22.domain.usecase.GetPostsUseCase
 import com.example.taskn22.domain.usecase.GetStoriesUseCase
-import com.example.taskn22.presentation.extension.getErrorMessage
+import com.example.taskn22.presentation.util.getErrorMessage
 import com.example.taskn22.presentation.mapper.toPresentation
 import com.example.taskn22.presentation.state.PostsState
 import dagger.hilt.android.lifecycle.HiltViewModel
