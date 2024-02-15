@@ -12,6 +12,6 @@ data class GetPost(
     data class GetOwner(
         val fullName: String,
         val profile: String?,
-        val postDate: String
+        val postDate: Long
     )
 }

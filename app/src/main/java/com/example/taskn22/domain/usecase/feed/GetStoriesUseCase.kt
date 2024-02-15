@@ -1,4 +1,4 @@
-package com.example.taskn22.domain.usecase
+package com.example.taskn22.domain.usecase.feed
 
 import com.example.taskn22.domain.repository.StoriesRepository
 import javax.inject.Inject

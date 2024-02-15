@@ -1,17 +1,18 @@
 package com.example.taskn22.presentation.screen.posts.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.taskn22.databinding.PostRecyclerItemBinding
 import com.example.taskn22.presentation.extension.loadImage
 import com.example.taskn22.presentation.model.Image
 import com.example.taskn22.presentation.model.Post
+import com.example.taskn22.presentation.util.CustomLayoutManager
 
-class PostsRecyclerViewAdapter: ListAdapter<Post, PostsRecyclerViewAdapter.PostsViewHolder>(PostsDiffCallback) {
+class PostsRecyclerViewAdapter(private val onClick: ((Post) -> Unit)?): ListAdapter<Post, PostsRecyclerViewAdapter.PostsViewHolder>(PostsDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsViewHolder {
         return PostsViewHolder(PostRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -23,6 +24,7 @@ class PostsRecyclerViewAdapter: ListAdapter<Post, PostsRecyclerViewAdapter.Posts
 
     inner class PostsViewHolder(private val binding: PostRecyclerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind() {
             val post = currentList[adapterPosition]
             with(binding) {
@@ -39,11 +41,14 @@ class PostsRecyclerViewAdapter: ListAdapter<Post, PostsRecyclerViewAdapter.Posts
                         submitList(it.map { Image(post.id, it) })
                     }
                 }
-                recyclerViewImages.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
+                recyclerViewImages.layoutManager = CustomLayoutManager(2, RecyclerView.VERTICAL)
 
                 tvMessages.text = "${post.comments} Comments"
                 tvLikes.text = "${post.likes} Likes"
 
+                binding.root.setOnClickListener {
+                    onClick?.invoke(post)
+                }
             }
         }
     }

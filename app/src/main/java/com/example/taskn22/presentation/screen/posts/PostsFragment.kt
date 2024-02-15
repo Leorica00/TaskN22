@@ -5,9 +5,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskn22.databinding.FragmentPostsBinding
 import com.example.taskn22.presentation.base.BaseFragment
+import com.example.taskn22.presentation.event.PostsEvent
 import com.example.taskn22.presentation.extension.showSnackBar
 import com.example.taskn22.presentation.model.Feed
 import com.example.taskn22.presentation.screen.posts.adapter.FeedRecyclerViewAdapter
@@ -29,14 +31,24 @@ class PostsFragment : BaseFragment<FragmentPostsBinding>(FragmentPostsBinding::i
     }
 
     override fun setUpListeners() {
+        feedAdapter.onClick = {
+            viewModel.onEvent(PostsEvent.GoToDetailsFragmentEvent(it.id))
+        }
     }
 
     override fun setUpObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.postsStateFlow.collect {
-                    handleState(it)
+                launch {
+                    viewModel.postsStateFlow.collect {
+                        handleState(it)
+                    }
                 }
+                launch {
+                   viewModel.uiEvent.collect {
+                       handleUiEvent(it)
+                   }
+               }
             }
         }
     }
@@ -55,6 +67,12 @@ class PostsFragment : BaseFragment<FragmentPostsBinding>(FragmentPostsBinding::i
             errorMessage?.let {
                 binding.root.showSnackBar(resources.getString(it))
             }
+        }
+    }
+
+    private fun handleUiEvent(event: PostsViewModel.PostsFragmentUiEvent) {
+        when(event) {
+            is PostsViewModel.PostsFragmentUiEvent.GoToPostDetailsEvent -> findNavController().navigate(PostsFragmentDirections.actionGlobalPostDetailsFragment(event.id))
         }
     }
 }

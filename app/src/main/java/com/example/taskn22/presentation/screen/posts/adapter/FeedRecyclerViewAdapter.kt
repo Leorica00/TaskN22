@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskn22.databinding.FeedRecyclerPostItemBinding
 import com.example.taskn22.databinding.FeedRecyclerStoryItemBinding
 import com.example.taskn22.presentation.model.Feed
+import com.example.taskn22.presentation.model.Post
 
 class FeedRecyclerViewAdapter : ListAdapter<Feed, RecyclerView.ViewHolder>(FeedDiffCallback) {
 
+    var onClick: ((Post) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
             POST -> FeedPostViewHolder(FeedRecyclerPostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -33,7 +35,7 @@ class FeedRecyclerViewAdapter : ListAdapter<Feed, RecyclerView.ViewHolder>(FeedD
             val posts = currentList[adapterPosition].posts
             with(binding.postsRecyclerView) {
                 layoutManager = LinearLayoutManager(itemView.context)
-                adapter = PostsRecyclerViewAdapter().apply {
+                adapter = PostsRecyclerViewAdapter(onClick).apply {
                     this.submitList(posts)
                 }
             }

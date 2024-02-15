@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "704142387731",
+    "project_id": "taskn23notifications",
+    "storage_bucket": "taskn23notifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704142387731:android:97ab80048713bf6c262de6",
+        "android_client_info": {
+          "package_name": "com.example.taskn22"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9fLk0Hf67cc464s3wMKKx5z0mQUaR5U8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

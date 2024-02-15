@@ -1,4 +1,4 @@
-package com.example.taskn22.domain.usecase
+package com.example.taskn22.domain.usecase.feed
 
 import android.util.Log.d
 import com.example.taskn21.data.remote.common.Resource

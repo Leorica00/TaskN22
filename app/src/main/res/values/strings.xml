@@ -13,4 +13,7 @@
     <string name="messages">Messages</string>
     <string name="home">Home</string>
     <string name="favourites">Favourites</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="firebase_messaging">Firebase Messaging</string>
+    <string name="firebase_messaging_id">firebaseMessaging</string>
 </resources>
