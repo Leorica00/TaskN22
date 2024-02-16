@@ -48,10 +48,13 @@ class PostsViewModel @Inject constructor(
             getPostsUseCase().collect { resource ->
                 d("showResource", resource.toString())
                 when (resource) {
-                    is Resource.Loading -> _postsStateFlow.update { currentState ->
-                        currentState.copy(
-                            isLoading = resource.loading
-                        )
+                    is Resource.Loading -> {
+                        _postsStateFlow.update { currentState ->
+                            currentState.copy(
+                                isLoading = resource.loading
+                            )
+                        }
+                        updateErrorMessage(null)
                     }
 
                     is Resource.Error -> updateErrorMessage(getErrorMessage(resource.error))
@@ -68,10 +71,13 @@ class PostsViewModel @Inject constructor(
         viewModelScope.launch {
             getStoriesUseCase().collect { resource ->
                 when (resource) {
-                    is Resource.Loading -> _postsStateFlow.update { currentState ->
-                        currentState.copy(
-                            isLoading = resource.loading
-                        )
+                    is Resource.Loading -> {
+                        _postsStateFlow.update { currentState ->
+                            currentState.copy(
+                                isLoading = resource.loading
+                            )
+                        }
+                        updateErrorMessage(null)
                     }
 
                     is Resource.Error -> updateErrorMessage(getErrorMessage(resource.error))

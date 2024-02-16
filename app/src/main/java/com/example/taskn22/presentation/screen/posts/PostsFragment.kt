@@ -1,5 +1,6 @@
 package com.example.taskn22.presentation.screen.posts
 
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -7,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.taskn22.R
 import com.example.taskn22.databinding.FragmentPostsBinding
 import com.example.taskn22.presentation.base.BaseFragment
 import com.example.taskn22.presentation.event.PostsEvent
@@ -34,6 +36,11 @@ class PostsFragment : BaseFragment<FragmentPostsBinding>(FragmentPostsBinding::i
         feedAdapter.onClick = {
             viewModel.onEvent(PostsEvent.GoToDetailsFragmentEvent(it.id))
         }
+
+        binding.btnReset.setOnClickListener {
+            viewModel.onEvent(PostsEvent.GetPostsEvent)
+            viewModel.onEvent(PostsEvent.GetStoriesEvent)
+        }
     }
 
     override fun setUpObservers() {
@@ -57,15 +64,29 @@ class PostsFragment : BaseFragment<FragmentPostsBinding>(FragmentPostsBinding::i
         with(state) {
             posts?.let {posts->
                 stories?.let {stories->
-                    val feeds = listOf(Feed(1,stories, posts), Feed(2, stories, posts))
+                    btnReset.visibility = View.GONE
+                    val feeds = listOf(Feed(1,stories, emptyList()), Feed(2, emptyList(), posts))
                     feedAdapter.submitList(feeds)
                 }
             }
 
             progressBar.isVisible = isLoading
+            btnReset.isClickable = !isLoading
+            handleButtonBackground()
 
             errorMessage?.let {
                 binding.root.showSnackBar(resources.getString(it))
+                btnReset.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun handleButtonBackground() {
+        with(binding) {
+            if (btnReset.isClickable) {
+                btnReset.setBackgroundResource(R.drawable.btn_background)
+            } else {
+                btnReset.setBackgroundResource(R.drawable.btn_inactive_background)
             }
         }
     }
