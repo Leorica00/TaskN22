@@ -1,4 +1,4 @@
-package com.example.taskn22.data.repository
+package com.example.taskn22.data.repository.post
 
 import com.example.taskn21.data.remote.common.Resource
 import com.example.taskn22.data.common.HandleResponse
@@ -6,7 +6,7 @@ import com.example.taskn22.data.mapper.base.asResource
 import com.example.taskn22.data.mapper.post.toDomain
 import com.example.taskn22.data.service.PostsApiService
 import com.example.taskn22.domain.model.GetPost
-import com.example.taskn22.domain.repository.PostsRepository
+import com.example.taskn22.domain.repository.post.PostsRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

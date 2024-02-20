@@ -1,6 +1,5 @@
 package com.example.taskn22.presentation.screen.posts
 
-import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.taskn21.data.remote.common.Resource
@@ -46,7 +45,6 @@ class PostsViewModel @Inject constructor(
     private fun getPosts() {
         viewModelScope.launch {
             getPostsUseCase().collect { resource ->
-                d("showResource", resource.toString())
                 when (resource) {
                     is Resource.Loading -> {
                         _postsStateFlow.update { currentState ->

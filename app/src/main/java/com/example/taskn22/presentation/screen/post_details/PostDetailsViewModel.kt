@@ -9,7 +9,6 @@ import com.example.taskn22.presentation.mapper.toPresentation
 import com.example.taskn22.presentation.state.PostDetailsState
 import com.example.taskn22.presentation.util.getErrorMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -36,7 +35,7 @@ class PostDetailsViewModel @Inject constructor(private val getPostByIdUseCase: G
     }
 
     private fun getPostById(id: Int) {
-        viewModelScope.launch(IO) {
+        viewModelScope.launch {
             getPostByIdUseCase(id).collect { resource ->
                 when (resource) {
                     is Resource.Success -> _postDetailsStateFlow.update { currentState ->

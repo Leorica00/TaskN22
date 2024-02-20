@@ -1,12 +1,12 @@
 package com.example.taskn22.di
 
 import com.example.taskn22.data.common.HandleResponse
-import com.example.taskn22.data.repository.PostsRepositoryImpl
-import com.example.taskn22.data.repository.StoriesRepositoryImpl
+import com.example.taskn22.data.repository.post.PostsRepositoryImpl
+import com.example.taskn22.data.repository.story.StoriesRepositoryImpl
 import com.example.taskn22.data.service.PostsApiService
 import com.example.taskn22.data.service.StoriesApiService
-import com.example.taskn22.domain.repository.PostsRepository
-import com.example.taskn22.domain.repository.StoriesRepository
+import com.example.taskn22.domain.repository.post.PostsRepository
+import com.example.taskn22.domain.repository.story.StoriesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,4 +38,5 @@ object RepositoryModule {
             storiesApiService = storiesApiService,
             handleResponse = handleResponse,
         )
+
 }

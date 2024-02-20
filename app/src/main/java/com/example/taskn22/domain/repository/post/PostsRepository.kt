@@ -1,4 +1,4 @@
-package com.example.taskn22.domain.repository
+package com.example.taskn22.domain.repository.post
 
 import com.example.taskn21.data.remote.common.Resource
 import com.example.taskn22.domain.model.GetPost
